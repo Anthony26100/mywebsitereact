@@ -11,7 +11,8 @@ const Portfolio = () => {
             console.log(data);
         });
     }
-
+// useEffect est une hook
+// qui permet d'accéder ici à l'état 'compentDidMount' du composant
     useEffect( () => loadJoke(),[] );
     
 

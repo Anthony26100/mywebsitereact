@@ -1,4 +1,20 @@
-const Contact = () => {
+import React from "react"
+
+class Contact extends React.Component{
+    
+    constructor(props){
+        super(props) // equivaut au this
+    }
+
+    componentDidMount(){
+        console.log("componentDidMount")
+    }
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount")
+    }
+    
+    render(){
     return(
         <section>
             <div className="container-fluid">
@@ -15,6 +31,7 @@ const Contact = () => {
             </div>
         </section>
     )
+    }
 }
 
 export default Contact
