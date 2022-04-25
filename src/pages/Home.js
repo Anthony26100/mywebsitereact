@@ -10,7 +10,9 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <Btn />
+                        <Btn start={10}/>
+                        <Btn start={5}/>
+                        <Btn start={0}/>
                         <Love name="coding"/>
                         <Love name="smooking weed everythings 🤯🚬"/>
                         <p className="text-center">
