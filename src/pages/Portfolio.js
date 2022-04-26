@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import Page from "../components/Page";
 
 const Portfolio = () => {
-// on déclare la variable joke ET ça fonction/méthode setJoke 
-// les deux en même temps grâce au hook useState()
+    let [page,setPage] = useState(1);
+    
+
+
+    // on déclare la variable joke ET ça fonction/méthode setJoke 
+    // les deux en même temps grâce au hook useState()
     let [joke,setJoke] = useState('');
     const loadJoke = () => {
         fetch("https://api.chucknorris.io/jokes/random").then(response => response.json()).then( data => {
@@ -12,9 +17,14 @@ const Portfolio = () => {
         });
     }
 
+    const nextPage = (page) => {
+        setPage(page);
+        console.log("page" , page)
+    }
+
     let [gallery,setGallery] = useState([]);
     const loadPics = () => {
-        fetch("https://picsum.photos/v2/list?page=2&limit=6").then(response => response.json()).then( data => {
+        fetch("https://picsum.photos/v2/list?page="+page+"&limit=6").then(response => response.json()).then( data => {
             setGallery(data);
             console.log(data);
         });
@@ -25,11 +35,8 @@ const Portfolio = () => {
 // useEffect est une hook
 // qui permet d'accéder ici à l'état 'compentDidMount' du composant
 // Comme le ngOnInit
-    useEffect( () => {
-        loadJoke();
-        loadPics();
-    
-    },[] );
+    useEffect(()=> loadJoke, []);
+    useEffect(()=> loadPics, [page]);
     
 
     return(
@@ -49,7 +56,12 @@ const Portfolio = () => {
                     </div>
                 </div>
                 <div className="row">
-                    
+                    <div className="col">
+                        <Page page={page} nextPage={nextPage}/>;
+                    </div>
+                </div>
+                <div className="row">
+                
                     {
                     gallery.map(
                         pic => {
@@ -58,13 +70,21 @@ const Portfolio = () => {
                             let id = pic.id;
                             let height = pic.height
                             let width = pic.width
+                            let download = pic.download_url
                             return(
-                                <Card key={id} source={source} title={title} height={height} width={width} />
+                                
+                                <Card key={id} source={source} title={title} height={height} width={width} download={download} />
                             )
                             }
                     )
                         
                     }
+                    
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Page page={page} nextPage={nextPage}/>;
+                    </div>
                 </div>
             </div>
         </section>
