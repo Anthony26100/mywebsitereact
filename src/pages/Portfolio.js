@@ -22,6 +22,9 @@ const Portfolio = () => {
         console.log("page" , page)
     }
 
+    
+
+
     let [gallery,setGallery] = useState([]);
     const loadPics = () => {
         fetch("https://picsum.photos/v2/list?page="+page+"&limit=6").then(response => response.json()).then( data => {
@@ -57,7 +60,7 @@ const Portfolio = () => {
                 </div>
                 <div className="row">
                     <div className="col">
-                        <Page page={page} nextPage={nextPage}/>;
+                        <Page page={page} nextPage={nextPage}/>
                     </div>
                 </div>
                 <div className="row">
