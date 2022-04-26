@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Page from "../components/Page";
 
+
 const Portfolio = () => {
-    let [page,setPage] = useState(1);
+    
     
 
 
@@ -17,6 +18,7 @@ const Portfolio = () => {
         });
     }
 
+    let [page,setPage] = useState(1);
     const nextPage = (page) => {
         setPage(page);
         console.log("page" , page)
@@ -76,7 +78,7 @@ const Portfolio = () => {
                             let download = pic.download_url
                             return(
                                 
-                                <Card key={id} source={source} title={title} height={height} width={width} download={download} />
+                                <Card key={id} id={id} source={source} title={title} height={height} width={width} download={download} />
                             )
                             }
                     )
